@@ -17,7 +17,11 @@ class CreateShopFoodsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name', 50);
             $table->string('cost', 50);
+            $table->dateTime('shoumi_date');
+            $table->dateTime('shouhi_date');
+            $table->integer('shop_id');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

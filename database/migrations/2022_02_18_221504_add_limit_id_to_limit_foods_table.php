@@ -15,7 +15,7 @@ class AddLimitIdToLimitFoodsTable extends Migration
     {
         Schema::table('limit_foods', function (Blueprint $table) {
         $table->integer('limit_id')->unsigned();    //unsigned()型で定義
-        //'shop_id' は 'shopsテーブル' の 'id' を参照する外部キー
+        //'limit_id' は 'limitsテーブル' の 'id' を参照する外部キー
 
         });
     }
