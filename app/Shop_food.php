@@ -2,13 +2,15 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
 
 class Shop_food extends Model
 {
+    use SoftDeletes;
     
     protected $fillable = [
-     'id',
+    
     'shop_id',
     'name',
     'cost',
@@ -16,6 +18,10 @@ class Shop_food extends Model
     'shouhi_date'
 ];
 
+    function getByLimit()
+    {
+        return $this::with('shop')->orderBy('updated_at', 'DESC')->get();
+    }
 
     //Shopに対するリレーション
     

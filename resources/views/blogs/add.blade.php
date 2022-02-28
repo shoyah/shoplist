@@ -2,11 +2,11 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
-        <title>作成</title>
+        <title>追加/title>
     </head>
     <body>
         
-        <h1>買い物リストの作成</h1>
+        <h1>商品の追加</h1>
 
         <form action="/shops" method="POST">
         @csrf

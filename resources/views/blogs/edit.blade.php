@@ -2,37 +2,44 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
-        <title>Blog</title>
+        <title>edit</title>
     </head>
         <body>
 
-        <h1 class="title">編集</h1>
+        <h1 class="title">編集画面</h1>
         <div class="content">
-            <form action="/blogs/{{ $blog->id }}" method="BLOG">
+            <form action="/shops/{{ $shop->id }}/shop_foods/{{ $shop_food->id }}" method="POST">
                 @csrf
                 @method('PUT')
                 <div class="shops_name">
-            <input type="text" name="shop[name]" placeholder="題名" value="{{ old('shop.name') }}"/>
-            <p class="title__error" style="color:red">{{$errors->first("shop.name")}}</p>
-        </div>
-        <div class="contents_food">
-            <h5>商品名</h5>
-            <input type="text" name="blog[contents_food]" >
-        </div>
-        <div class="contents_money">
-            <h5>金額</h5>
-            <input type="text" name="blog[contents_money]" >
-        </div>
-        <div class="contents_shoumi">
-            <h5>賞味期限</h5>
-            <input type="date" name="blog[contents_shoumi]" >
-        </div>
-        <div class="contents_shouhi">
-            <h5>消費期限</h5>
-            <input type="date" name="blog[contents_shouhi]" >
-        </div>
-        </form>
-        <input type="submit" value="作成"/>
+            <input type='text' name='shop[name]' value="{{ $shop_food->shop->name }}">
+            
+            
+            
+            
+            <div class="foodname">
+                <h5>商品名</h5>
+                <input type="text" name="shop_food[name]" value="{{ $shop_food->name }}">
+            </div>
+            
+            <div class="cost">
+                <h5>金額</h5>
+            <input type="text" name="shop_food[cost]" value="{{ $shop_food->cost }}">円
+            </div>
+            
+            <div class="contents_shoumi">
+                <h5>賞味期限</h5>
+            <input type="date" name="shop_food[shoumi_date]" value="{{ $shop_food->shoumi_date }}">
+            </div>
+            
+            <div class="contents_shouhi">
+                <h5>消費期限</h5>
+            <input type="date" name="shop_food[shouhi_date]" value="{{ $shop_food->shouhi_date }}">
+            </div>
+            
+            
+        <input type="submit" value="保存"/>
+        
             </form>
         </div>
 

@@ -13,6 +13,6 @@
         <p class="shoplist">[<a href="/shops/">買い物リストを見る</a>]</p>
         <p class="limitlist">[<a href="/shops/{shop}/">期限リストを見る</a>]</p>
 
-
     </body>
 </html>
+
