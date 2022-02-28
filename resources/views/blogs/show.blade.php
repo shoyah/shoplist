@@ -8,6 +8,10 @@
     </head>
     <body>
         
+        @extends('layouts.app')　　　　　　　　　　　　　　　　　　
+
+        @section('content')
+        
         <h1>作成した買い物リスト</h1>
     </body>
  
@@ -21,18 +25,13 @@
     
         
             <h2 class='name'>{{ $shop_food->name }}</h2>
-            <h2 class='cost'>{{ $shop_food->cost }}</h2>
+            <h2 class='cost'>{{ $shop_food->cost }}円</h2>
             <h2 class='shoumi_date'>{{ $shop_food->shoumi_date }}</h2>
             <h2 class='shouhi_date'>{{ $shop_food->shouhi_date }}</h2>
             
         
     </div>        
-            
-    
-    
-        
-        <div class='back'>[<a href='/shops/'>買い物リスト一覧</a>]</div>
-        
+
         <form action="/shops/{{ $shop_food->id }}" id="form_delete" method="POST">
         {{ csrf_field() }}
         {{ method_field('delete') }}
@@ -43,7 +42,9 @@
         
         <p class="edit">[<a href="/shops/{{ $shop->id }}/shop_foods/{{ $shop_food->id }}/edit">編集</a>]</p>
         @endforeach
-        <div class='add'>[<a href='/shops/add'>商品を追加する</a>]</div>
+        
+        <div class='back'>[<a href='/shops/'>買い物リスト一覧</a>]</div>
+        <div class='add'>[<a href='/shops/{{ $shop->id }}/add'>商品を追加する</a>]</div>
         <script>
         function deleteShop(e) {
             "use strict";
@@ -52,6 +53,8 @@
             }
         }
         </script>
+
+        @endsection
 
     </body>
 </html>

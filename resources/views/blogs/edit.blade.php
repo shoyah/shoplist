@@ -5,6 +5,10 @@
         <title>edit</title>
     </head>
         <body>
+            
+        @extends('layouts.app')　　　　　　　　　　　　　　　　　　
+
+        @section('content')
 
         <h1 class="title">編集画面</h1>
         <div class="content">
@@ -42,6 +46,7 @@
         
             </form>
         </div>
-
+        
+        @endsection
     </body>
 </html>

@@ -118,11 +118,37 @@ class BlogController extends Controller
             **/
     }
     
+    public function add(shop $shop)
+    {
+        //dd($shop);
+        return view('blogs/add')->with([ 'shop' => $shop]);
+    }
+    
+    public function aditional(Request $request , Shop $shop , Shop_food $shop_food)
+    {
+        $shop_id = $shop->id;
+        
+        $shop_food_id = $shop_food->id;
+        
+        $shop_food_input = $request['shop_food'];
+        
+        $shop_food_input+=['shop_id'=>$shop_id];
+        
+        $shop_food_input+=['shop_food_id'=>$shop_food_id];
+        
+        $shop_food->fill($shop_food_input)->save();
+        
+        $shop_food_id = $shop_food->id;
+        
+        return redirect('/shops/' .  $shop_id);
+        
+    }    
+    
     
     
     public function edit(shop $shop , shop_food $shop_food)
     {
-        //dd($shop_food);
+        //dd($shop);
         return view('blogs/edit')->with([
             'shop' => $shop,
             'shop_food' => $shop_food
@@ -162,10 +188,6 @@ class BlogController extends Controller
     return redirect('/');
     }
     
-    public function add(shop $shop)
-    {
-        //dd($shop);
-        return view('blogs/add')->with([ 'shop' => $shop->get()]);
-    }
+    
     
 }

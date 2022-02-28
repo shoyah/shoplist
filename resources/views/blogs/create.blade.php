@@ -5,6 +5,10 @@
         <title>作成</title>
     </head>
     <body>
+    
+    @extends('layouts.app')　　　　　　　　　　　　　　　　　　
+
+    @section('content')    
         
         <h1>買い物リストの作成</h1>
 
@@ -46,6 +50,6 @@
         </form>
         <div class="back">[<a href="/">back</a>]</div>
         
-
+    @endsection
     </body>
 </html>

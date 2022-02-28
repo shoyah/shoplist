@@ -8,7 +8,10 @@
     </head>
     <body>
 
+        @extends('layouts.app')　　　　　　　　　　　　　　　　　　
 
+        @section('content')
+        
         <h1>買い物リスト一覧</h1>
         <p class="create">[<a href="/shops/create">買い物リストを作成する</a>]</p>
         <div class='shops'>
@@ -21,5 +24,7 @@
                 </div>
             @endforeach
             <div class='back'>[<a href='/shops/'>戻る</a>]</div>
+   @endsection
+   
     </body>
 </html>

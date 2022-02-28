@@ -10,6 +10,10 @@
         
         <h1>作成した買い物リスト</h1>
     </body>
+    
+        @extends('layouts.app')　　　　　　　　　　　　　　　　　　
+
+        @section('content')
  
     <div class='shoplist'>
             <h2 class='title'>{{ $shop->name }}</h2>
@@ -40,6 +44,8 @@
             }
         }
         </script>
+
+        @endsection
 
     </body>
 </html>
