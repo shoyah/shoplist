@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use App\Blog;
 use App\Shop;
 use App\Shop_food;
-use Illuminate\Http\Request;
+use App\Http\Requests\ShopRequest;
+use App\Http\Requests\AddRequest;
+use Illuminate\Support\Facades\Auth;
 
 class BlogController extends Controller
 {
@@ -26,7 +29,7 @@ class BlogController extends Controller
         return view('blogs/create');
     }
     
-    public function store(Request $request , Shop_food $shop_food , Shop $shop)//create.blade.phpで作成ボタンを押した後に来るー＞新規作成
+    public function store(ShopRequest $request , Shop_food $shop_food , Shop $shop)//create.blade.phpで作成ボタンを押した後に来るー＞新規作成
     {
         //dd($request);
         //dd($shop);
@@ -35,12 +38,15 @@ class BlogController extends Controller
         $shop_input = $request['shop'];
         //shopをキーに持つリクエスト値を取得する<-このキーはcreate.blade.phpで使用している[shop]今回はnameを取得している。
         //dd($shop_input);  //<-shopのnameが格納されていた。
+    
+        $shop_input += ['user_id' => $request->user()->id]; 
+        //dd($shop_input);
         $shop->name=$shop_input['name'];
         //Shopsテーブルのnameカラムを$shop_inputに保存
-        
+        //dd($shop);
         //dd($shop_input);
         //  "name" => "題名"が入っている
-        $shop->save();
+        $shop->fill($shop_input)->save();
         //格納したデータを保存
         //dd($shop);   //<-データが格納された。
         $shop_id = $shop->id;
@@ -59,6 +65,8 @@ class BlogController extends Controller
         //    "cost" => "金額"
         //    "shoumi_date" => "賞味期限"
         //    "shouhi_date" => "消費期限"が入っている。
+        
+        $shop_food_input += ['user_id' => $request->user()->id]; 
         
         $shop_food_input+=['shop_id'=>$shop_id];
         //$shop_food_inputに$shop_idをshop_idとして格納
@@ -91,6 +99,9 @@ class BlogController extends Controller
         //dd($shop_food_id);
         //$shop_food_idに$shop_foodのidが格納された。
         
+        
+        
+        
         return redirect('/shops/' .  $shop_id);
     }
     
@@ -104,6 +115,7 @@ class BlogController extends Controller
             //'shop_food' => $shop_food
             //dd($shop_food),   //データが通っている。
             ]);
+            
             /**
              * "id" => 50
                 "name" => "おにぎり"
@@ -124,21 +136,17 @@ class BlogController extends Controller
         return view('blogs/add')->with([ 'shop' => $shop]);
     }
     
-    public function aditional(Request $request , Shop $shop , Shop_food $shop_food)
+    public function aditional(AddRequest $request , Shop $shop , Shop_food $shop_food)
     {
         $shop_id = $shop->id;
-        
-        $shop_food_id = $shop_food->id;
         
         $shop_food_input = $request['shop_food'];
         
         $shop_food_input+=['shop_id'=>$shop_id];
-        
-        $shop_food_input+=['shop_food_id'=>$shop_food_id];
+        $shop_food_input += ['user_id' => $request->user()->id]; 
         
         $shop_food->fill($shop_food_input)->save();
         
-        $shop_food_id = $shop_food->id;
         
         return redirect('/shops/' .  $shop_id);
         
@@ -155,11 +163,12 @@ class BlogController extends Controller
             ]);
     }
     
-    public function update(Request $request , Shop $shop , Shop_food $shop_food)//edit.blade.phpの保存ボタンを押した後に来るー＞既存データの上書き
+    public function update(AddRequest $request , Shop $shop , Shop_food $shop_food)//edit.blade.phpの保存ボタンを押した後に来るー＞既存データの上書き
     {
 //・既存のインスタンスに対して保存する処理を書く
         //dd($shop_food);     //ここでは更新後のデータが格納されていた
         $shop_input = $request['shop'];
+        $shop_input += ['user_id' => $request->user()->id];
         $shop->name = $shop_input['name'];
         //dd($shop_input);
         $shop->save();
@@ -187,6 +196,9 @@ class BlogController extends Controller
     $shop_food->delete();
     return redirect('/');
     }
+    
+    
+    
     
     
     

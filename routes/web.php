@@ -7,6 +7,11 @@ use Illuminate\Support\Facades\Route;
 Route::group(['middleware' => ['auth']], function(){
     Route::get('/', 'BlogController@index');
     Route::get('/shops/', 'BlogController@shoplist');
+    
+    Route::get('/limits/', 'LimitlistController@index');
+    Route::get('/limits/shoumi', 'LimitlistController@shoumi');
+    Route::get('/limits/shouhi', 'LimitlistController@shouhi');
+    
     Route::get('/shops/create', 'BlogController@create');
     Route::post('/shops', 'BlogController@store');
     Route::get('/shops/{shop}', 'BlogController@show');

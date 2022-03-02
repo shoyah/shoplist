@@ -16,9 +16,9 @@ class CreateShopFoodsTable extends Migration
         Schema::create('shop_foods', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name', 50);
-            $table->string('cost', 50);
-            $table->date('shoumi_date');
-            $table->date('shouhi_date');
+            $table->string('cost', 50)->nullable();     //NULL値を許容する
+            $table->date('shoumi_date')->nullable();
+            $table->date('shouhi_date')->nullable();
             $table->integer('shop_id');
             $table->timestamps();
             $table->softDeletes();

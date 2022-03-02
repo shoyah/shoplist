@@ -8,13 +8,14 @@ class Shop extends Model
 {
     
     protected $fillable = [
-    'name'
+    'name',
+    'user_id'
 ];
 
     public function getByLimit()
     {
         // updated_atで降順に並べる
-        return $this->blogs()->with('shop')->orderBy('updated_at', 'DESC')->get();
+        return $this->with('user')->orderBy('updated_at', 'DESC')->get();
     }
         
     //Shop_foodsに対するリレーション
@@ -24,5 +25,10 @@ class Shop extends Model
     public function shop_foods()   
     {
     return $this->hasMany('App\Shop_food');  
+    }
+    
+    public function user()
+    {
+    return $this->belongsTo('App\User');
     }
 }

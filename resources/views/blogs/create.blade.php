@@ -16,7 +16,8 @@
         @csrf
         
     <div class="shops_name">
-    <input type="text" name="shop[name]" placeholder="題名" >
+    <input type="text" name="shop[name]" placeholder="題名" value="{{ old('shop.name') }}" >
+    <p class="name__error" style="color:red">{{ $errors->first('shop.name') }}</p>
     </div>
 
     
@@ -25,12 +26,13 @@
 
     <div class="foodname">
         <h5>商品名</h5>
-        <input type="text" name="shop_food[name]" >
+        <input type="text" name="shop_food[name]" value="{{ old('shop_food.name') }}" >
+        <p class="name__error" style="color:red">{{ $errors->first('shop_food.name') }}</p>
     </div>
           
     <div class="cost">
         <h5>金額</h5>
-        <input type="text" name="shop_food[cost]" >円
+        <input type="text" name="shop_food[cost]"placeholder="半角英数字" >円
     </div>
             
     <div class="contents_shoumi">

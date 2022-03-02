@@ -10,7 +10,7 @@ class Shop_food extends Model
     use SoftDeletes;
     
     protected $fillable = [
-    
+    'user_id',
     'shop_id',
     'name',
     'cost',
@@ -29,5 +29,10 @@ class Shop_food extends Model
     public function shop()
     {
         return $this->belongsTo('App\Shop');
+    }
+    
+    public function user()
+    {
+    return $this->belongsTo('App\User');
     }
 }
