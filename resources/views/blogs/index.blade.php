@@ -64,7 +64,6 @@
     
     
         <h1>ホーム</h1>
-        
         <p class="shoplist">[<a href="/shops/">買い物リストを見る</a>]</p>
         
         <form action="#" name="form1">

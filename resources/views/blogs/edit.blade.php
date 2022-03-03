@@ -17,9 +17,10 @@
                 @method('PUT')
                 <div class="shops_name">
             <input type='text' name='shop[name]' value="{{ $shop_food->shop->name }}">
+            </div>
             
             
-            
+            <div style="display:inline-flex">
             
             <div class="foodname">
                 <h5>商品名</h5>
@@ -40,9 +41,10 @@
                 <h5>消費期限</h5>
             <input type="date" name="shop_food[shouhi_date]" value="{{ $shop_food->shouhi_date }}">
             </div>
-            
-            
+            </div>
+            <div class="submit">
         <input type="submit" value="保存"/>
+        </div>
         
             </form>
         </div>

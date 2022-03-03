@@ -31,21 +31,12 @@
         <u><h5>消費期限</h5></u>
     
     </div>
-    
     @foreach($shop->shop_foods as $shop_food)    
     
     <div class = 'shop_food'>
     
-            <div class="d-flex justify-content-around">
-            <h4 class='name'>{{ $shop_food->name }}</h4>
-            <h4 class='cost'>{{ $shop_food->cost }}円</h4>
-            <h4 class='shoumi_date'>{{ $shop_food->shoumi_date }}</h4>
-            <h4 class='shouhi_date'>{{ $shop_food->shouhi_date }}</h4>
-            </div>
-        
-    </div>        
-
-        <form action="/shops/{{ $shop_food->id }}" id="form_delete" method="POST">
+        <div class="form-row">
+            <form action="/shops/{{ $shop_food->id }}" id="form_delete" method="POST">
         {{ csrf_field() }}
         {{ method_field('delete') }}
             
@@ -56,6 +47,23 @@
         
         
         <p class="edit">[<a href="/shops/{{ $shop->id }}/shop_foods/{{ $shop_food->id }}/edit">編集</a>]</p>
+            <div class="col">
+            <h4 class='text-center'>{{ $shop_food->name }}</h4>
+            </div>
+            <div class="col">
+            <h4 class='text-center'>{{ $shop_food->cost }}円</h4>
+            </div>
+            <div class="col">
+            <h4 class='text-center'>{{ $shop_food->shoumi_date }}</h4>
+            </div>
+            <div class="col">
+            <h4 class='text-center'>{{ $shop_food->shouhi_date }}</h4>
+            </div>
+            
+        </div>
+    </div>        
+
+        
         @endforeach
         
         
