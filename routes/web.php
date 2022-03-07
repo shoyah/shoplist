@@ -28,8 +28,8 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-//Route::get('/linelogin', 'LineLoginController@lineLogin')->name('linelogin');
-//Route::get('/callback', 'LineLoginController@callback')->name('callback');
+Route::get('/linelogin', 'LineLoginController@lineLogin')->name('linelogin');
+Route::get('/callback', 'LineLoginController@callback')->name('callback');
 
 // LINE メッセージ受信
 Route::post('/line/webhook', 'LineMessengerController@webhook')->name('line.webhook');
