@@ -36,7 +36,7 @@
     <div class = 'shop_food'>
     
         <div class="form-row">
-            <form action="/shops/{{ $shop_food->id }}" id="form_delete" method="POST">
+            <form action="/shops/{{ $shop->id }}" id="form_delete" method="POST">
         {{ csrf_field() }}
         {{ method_field('delete') }}
             
