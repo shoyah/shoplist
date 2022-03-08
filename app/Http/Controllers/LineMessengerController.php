@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use LINE\LINEBot\HTTPClient\CurlHTTPClient;
 use LINE\LINEBot;
-use App\Models\User;
+use App\User;
 use LINE\LINEBot\MessageBuilder\TextMessageBuilder;
  
 use Illuminate\Http\Request;
@@ -32,7 +32,24 @@ class LineMessengerController extends Controller
  
             // ユーザーにメッセージを返す
             $reply=$bot->replyText($reply_token, $reply_message);
-            
+
+
+            // LINEのユーザーIDをuserIdに代入
+            $userId=$request['events'][0]['source']['userId'];
+ 
+            // userIdがあるユーザーを検索
+            $user=User::where('line_id', $userId)->first();
+ 
+            // もし見つからない場合は、データベースに保存
+            if($user==NULL) {
+                $profile=$bot->getProfile($userId)->getJSONDecodedBody();
+ 
+                $user=new User();
+                $user->provider='line';
+                $user->line_id=$userId;
+                $user->name=$profile['displayName'];
+                $user->save();
+            }
             return 'ok';
         }
     }
