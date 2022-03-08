@@ -18,10 +18,15 @@ class BlogController extends Controller
         return view('blogs/index');
     }
     
-     public function shoplist(shop $shop)
+     public function shoplist(shop $shop , User $user)
     {
+        $user = Auth::user();
         
-        return view('blogs/shoplist')->with([ 'shop' => $shop->get()]);
+        $user_id = $user->id;
+        
+        $shop = Shop_food::where('user_id' , $user_id)->get();
+        
+        return view('blogs/shoplist')->with([ 'shop' => $shop]);
     }
     
     public function create()

@@ -73,7 +73,7 @@ class LineLoginController extends Controller
       curl_close($curl);
   
       $json = json_decode($res);
-  
+
       return $json;
   
     }
