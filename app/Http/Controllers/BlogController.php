@@ -24,7 +24,8 @@ class BlogController extends Controller
         
         $user_id = $user->id;
         
-        $shop = Shop_food::where('user_id' , $user_id)->get();
+        $shop = Shop::where('user_id' , $user_id)->get();
+        //dd($shop);
         
         return view('blogs/shoplist')->with([ 'shop' => $shop]);
     }
@@ -110,29 +111,10 @@ class BlogController extends Controller
         return redirect('/shops/' .  $shop_id);
     }
     
-    public function show(Shop $shop )
+    public function show(Shop $shop)
     {
-        //dd($shop->shop_foods);
-        //dd($shop_food);     //<-この時点でデータは格納済み
-        return view('blogs/show')->with([
-            'shop' => $shop,
-            //dd($shop),  //<-null
-            //'shop_food' => $shop_food
-            //dd($shop_food),   //データが通っている。
-            ]);
-            
-            /**
-             * "id" => 50
-                "name" => "おにぎり"
-                "cost" => "10"
-                "shoumi_date" => "2022-02-03 00:00:00"
-                "shouhi_date" => "2022-02-02 00:00:00"
-                "shop_id" => 40
-                "created_at" => "2022-02-27 02:35:47"
-                "updated_at" => "2022-02-27 02:35:47"
-                "deleted_at" => null
-    　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　が入っている。　
-            **/
+        //dd($shop);
+        return view('blogs/show')->with(['shop' => $shop]);
     }
     
     public function add(shop $shop)
