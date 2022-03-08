@@ -42,7 +42,7 @@
                         @guest
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                //<a href="{{route('linelogin')}}">LINEログイン</a>
+                                <a href="{{route('linelogin')}}">LINEログイン</a>
 
                             </li>
                             @if (Route::has('register'))
