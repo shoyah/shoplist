@@ -96,15 +96,13 @@ class LineLoginController extends Controller
       // なければ登録してからログイン
       }else {
         $user=new User();
-        /**$user->provider='line';
+        $user->provider='line';
         $user->line_id=$profile->userId;
         $user->name=$profile->displayName;
-        **/
-        $user->fill($profile)->save();
+        $user->save();
 
         Auth::login($user);
         return redirect('/');
-      
       }
     }
 }
