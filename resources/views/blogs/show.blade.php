@@ -67,12 +67,9 @@
         @endforeach
         
          <h4>合計</h4>
-        @foreach($shop->shop_foods as $shop_food)
         
-            <h4 class='text-center'>{{ $shop_food->cost +=$shop_food->cost}}</h4>
-                
-        @endforeach
-            
+        
+            <h4 class='text-center'>{{ $sum }}円</h4>
         
         
         <div class='add'>[<a href='/shops/{{ $shop->id }}/add'>商品を追加する</a>]</div>

@@ -113,22 +113,22 @@ class BlogController extends Controller
     
     public function show(Shop $shop , Shop_food $shop_food)
     {
-        $shop_food=$shop->shop_foods;
-        dd($shop_food);
-        $cost =$shop_food;
         
-        $shop_food = Shop_food::where('cost' , $cost)->get();
-        dd($shop_food);
+        $shop_foods=$shop->shop_foods;
+        //dd($shop_food);
+        $sum = 0;
+        foreach($shop_foods as $shop_food){
+        $shop_food->cost;
         
-        $shop_food = shop_food::where('cost' , $cost);
-        dd($shop_food);
-        foreach($shop_food as $cost){
-            $sum += $cost->cost;
+        $sum += $shop_food->cost;
         }
-        dd($sum);
+        //dd($sum);
         
         
-        return view('blogs/show')->with(['shop' => $shop]);
+        return view('blogs/show')->with([
+            'shop' => $shop,
+            'sum' => $sum
+            ]);
     }
     
     public function add(shop $shop)
