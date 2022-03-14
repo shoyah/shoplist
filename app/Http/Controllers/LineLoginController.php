@@ -54,6 +54,7 @@ class LineLoginController extends Controller
       $res = curl_exec($curl);
       curl_close($curl); 
       $json = json_decode($res);
+    
       $accessToken = $json->access_token;
  
       return $accessToken;
@@ -83,7 +84,7 @@ class LineLoginController extends Controller
     {
       $accessToken = $this->getAccessToken($request);
       $profile = $this->getProfile($accessToken);
- 
+
       // ユーザー情報あるか確認
       $user=User::where('line_id', $profile->userId)->first();
  
@@ -95,12 +96,15 @@ class LineLoginController extends Controller
       // なければ登録してからログイン
       }else {
         $user=new User();
-        $user->provider='line';
+        /**$user->provider='line';
         $user->line_id=$profile->userId;
         $user->name=$profile->displayName;
-        $user->save();
+        **/
+        $user->fill($profile)->save();
+
         Auth::login($user);
         return redirect('/');
+      
       }
     }
 }

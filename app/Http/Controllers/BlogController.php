@@ -111,9 +111,23 @@ class BlogController extends Controller
         return redirect('/shops/' .  $shop_id);
     }
     
-    public function show(Shop $shop)
+    public function show(Shop $shop , Shop_food $shop_food)
     {
-        //dd($shop);
+        $shop_food=$shop->shop_foods;
+        dd($shop_food);
+        $cost =$shop_food;
+        
+        $shop_food = Shop_food::where('cost' , $cost)->get();
+        dd($shop_food);
+        
+        $shop_food = shop_food::where('cost' , $cost);
+        dd($shop_food);
+        foreach($shop_food as $cost){
+            $sum += $cost->cost;
+        }
+        dd($sum);
+        
+        
         return view('blogs/show')->with(['shop' => $shop]);
     }
     
