@@ -28,7 +28,7 @@ class LineMessengerController extends Controller
             $bot = new LINEBot($http_client, ['channelSecret' => config('services.line.messenger_secret')]);
  
             // 送信するメッセージの設定
-            $reply_message='メッセージありがとうございます';
+            $reply_message='申し訳ございません。メッセージ対応はしておりません。';
  
             // ユーザーにメッセージを返す
             $reply=$bot->replyText($reply_token, $reply_message);
@@ -53,4 +53,24 @@ class LineMessengerController extends Controller
             return 'ok';
         }
     }
+    
+    // メッセージ送信用
+    public function message() {
+ 
+        // LINEBOTSDKの設定
+        $http_client = new CurlHTTPClient(config('services.line.channel_token'));
+        $bot = new LINEBot($http_client, ['channelSecret' => config('services.line.messenger_secret')]);
+ 
+        // LINEユーザーID指定
+        $userId = "1";
+ 
+        // メッセージ設定
+        $message = "こんにちは！";
+ 
+        // メッセージ送信
+        $textMessageBuilder = new TextMessageBuilder($message);
+        $response    = $bot->pushMessage($userId, $textMessageBuilder);
+ 
+    }
+    
 }
