@@ -1,78 +1,83 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+# 食材管理アプリ
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+本アプリは、「購入した食材を管理するためのアプリ」です。  
+ユーザーは買い物に行く際に買う食材を記入し、買い忘れを防止します。
+購入後食材の金額、賞味期限、消費期限を記入して保存します。
+その日買った食材の合計金額を表示し、簡易的な家計簿になります。
+賞味期限、消費期限を登録した食材は期限が近い順に一覧で表示するようにし、「いつの間にか切れていた」ということが無いようにしました。  
+また、開発途中ではありますが、登録した情報を基に、ラインへ自動送信を毎朝AM8:00に行います。
 
-## About Laravel
+# 作成した背景/目的
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+私は買い物に行く際にあらかじめ決めていても忘れてしまうことがありました。そこで紙や、スマホのメモアプリに記述し、買い忘れ防止を行っていましたが、使用しているアプリは他のこともメモするためすぐに埋もれてしまいます。過去に何買ったか探すのが大変で家にあるのに同じものを購入してしまうということが多々発生していました。  
+また、購入した商品の賞味期限が「いつの間にか切れていた」ということも頻繁にありました。  
+そこで、webページ上で買う商品のリストを一括で管理でき、過去に買った商品が簡単に見られ、賞味期限の管理ができるアプリを作成しました。
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+# 開発環境
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+#### OS  
+Windows 11
 
-## Learning Laravel
+#### フロントエンド  
+* HTML/CSS
+* Bootstrap v4.6.1
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+#### バックエンド
+* PHP v8.0.14
+* Laravel v6.20.44
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+#### データベース
+* MairaDB
 
-## Laravel Sponsors
+#### インフラ
+* AWS (EC2)
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+#### デプロイ
+Heroku (https://salty-peak-75420.herokuapp.com/)
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- [UserInsights](https://userinsights.com)
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
-- [iMi digital](https://www.imi-digital.de/)
-- [Earthlink](https://www.earthlink.ro/)
-- [Steadfast Collective](https://steadfastcollective.com/)
-- [We Are The Robots Inc.](https://watr.mx/)
-- [Understand.io](https://www.understand.io/)
-- [Abdel Elrafa](https://abdelelrafa.com)
-- [Hyper Host](https://hyper.host)
-- [Appoly](https://www.appoly.co.uk)
-- [OP.GG](https://op.gg)
+##### テストアカウント
 
-## Contributing
+テストアカウント：　shoya  
+ログインEmail：　shoya1023@outlook.jp  
+ログインパスワード：　shoya1023  
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+# テーブル定義
 
-## Code of Conduct
+### usersテーブル
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+|  カラム名  |  データ型  | 詳細  | 
+| ---- | ---- | ---- |
+|  id  |  bigint(20) unsigned  | ID  |
+|  name  |  varchar(255)  | ユーザー名  |
+|  email  | varchar(255)   | メールアドレス  |
+|  passward  | varchar(255)   | パスワード  |
+| line_id   | varchar(255)   | LINEのID   |
+| remember_token   | varchar(100)   | ログイン状態の保持   |
+| created_at   | timestamp   | データ作成時間   |
+| updated_at   | timestamp   | データ更新時間   |
 
-## Security Vulnerabilities
+### shopsテーブル
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+|  カラム名  |  データ型  | 詳細  | 
+| ---- | ---- | ---- |
+|  id  | bigint(20) unsigned   | ID  |
+|  name  | varchar(50)   | 買い物リストの題名  |
+| created_at   | timestamp   | データ作成時間  |
+| updated_at   | timestamp   | データ更新時間  |
+| user_id   | bigint(20) unsigned   | データ削除時間  |
 
-## License
+### shop_foodsテーブル
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+|  カラム名  |  データ型  | 詳細  | 
+| ---- | ---- | ---- |
+|  id  | bigint(20) unsigned   | ID  |
+|  name  | varchar(50)   | 食材の名前  |
+|  cost  | varchar(50)   | 値段  |
+|  shoumi_date  | date   | 賞味期限  |
+|  shouhi_date  | date   | 消費期限  |
+| user_id   | bigint(20) unsigned   | usersテーブルとの連携用  |
+| shop_id   | int(11)   | shopsテーブルとの連携用ID  |
+| created_at   | int(11)   | データ作成時間  |
+| updated_at   | timestamp   | データ更新時間  |
+| deleted_at   | timestamp   | データ削除時間  |
+
