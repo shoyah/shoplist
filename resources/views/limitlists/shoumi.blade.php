@@ -12,7 +12,7 @@
 
         @section('content')
         
-        <h1>期限リスト一覧</h1>
+        <h1>賞味期限リスト一覧</h1>
         
         <div class="d-flex justify-content-around">
         
