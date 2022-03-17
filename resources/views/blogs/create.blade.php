@@ -10,48 +10,46 @@
 
     @section('content')    
         
-        <h1>買い物リストの作成</h1>
+    <h1>買い物リストの作成</h1>
 
-        <form action="/shops" method="POST">
-        @csrf
+    <form action="/shops" method="POST">
+    @csrf
         
-    <div class="shops_name">
-    <input type="text" name="shop[name]" placeholder="題名" value="{{ old('shop.name') }}" >
-    <p class="name__error" style="color:red">{{ $errors->first('shop.name') }}</p>
-    </div>
-
+        <div class="shops_name">
+            <input type="text" name="shop[name]" placeholder="題名" value="{{ old('shop.name') }}" >
+            <p class="name__error" style="color:red">{{ $errors->first('shop.name') }}</p>
+        </div>
     
-    <div style="display:inline-flex">
-    
-
-    <div class="foodname">
-        <h5>商品名</h5>
-        <input type="text" name="shop_food[name]" value="{{ old('shop_food.name') }}" >
-        <p class="name__error" style="color:red">{{ $errors->first('shop_food.name') }}</p>
-    </div>
-          
-    <div class="cost">
-        <h5>金額</h5>
-        <input type="text" name="shop_food[cost]"placeholder="半角英数字" >円
-    </div>
+        <div style="display:inline-flex">
+            <div class="foodname">
+                <h5>商品名</h5>
+                <input type="text" name="shop_food[name]" value="{{ old('shop_food.name') }}" >
+                <p class="name__error" style="color:red">{{ $errors->first('shop_food.name') }}</p>
+            </div>
+                  
+            <div class="cost">
+                <h5>金額</h5>
+                <input type="text" name="shop_food[cost]"placeholder="半角英数字" >円
+            </div>
+                    
+            <div class="contents_shoumi">
+                <h5>賞味期限</h5>
+                <input type="date" name="shop_food[shoumi_date]" >
+            </div>
             
-    <div class="contents_shoumi">
-        <h5>賞味期限</h5>
-        <input type="date" name="shop_food[shoumi_date]" >
-    </div>
+            <div class="contents_shouhi">
+                <h5>消費期限</h5>
+                <input type="date" name="shop_food[shouhi_date]" >
+            </div>
+        </div>
     
-    <div class="contents_shouhi">
-        <h5>消費期限</h5>
-        <input type="date" name="shop_food[shouhi_date]" >
-    </div>
-    
-    </div>
         <div class="submit">
             <input type="submit" value="作成"/>
         </div>
-        </form>
-        <div class="back">[<a href="/">back</a>]</div>
-        
+    </form>
+    
+    <div class="back">[<a href="/">back</a>]</div>
+    
     @endsection
     </body>
 </html>

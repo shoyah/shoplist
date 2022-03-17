@@ -20,8 +20,8 @@ class BlogController extends Controller
     
      public function shoplist(shop $shop , User $user)
     {
+        //現在ログインしているユーザーのidを取得
         $user = Auth::user();
-        
         $user_id = $user->id;
         
         $shop = Shop::where('user_id' , $user_id)->get();
@@ -36,29 +36,19 @@ class BlogController extends Controller
     
     public function store(ShopRequest $request , Shop_food $shop_food , Shop $shop)
     {
-        //空のインスタンスを作成し保存する処理を書く
         $shop_input = $request['shop'];
-    
         $shop_input += ['user_id' => $request->user()->id]; 
-        
         $shop->name=$shop_input['name'];
-        //Shopsテーブルのnameカラムを$shop_inputに保存
         $shop->fill($shop_input)->save();
-        //格納したデータを保存
+
         $shop_id = $shop->id;
-        
         $shop_food_id = $shop_food->id;
         
         $shop_food_input = $request['shop_food'];
-        
         $shop_food_input += ['user_id' => $request->user()->id]; 
-        
         $shop_food_input+=['shop_id'=>$shop_id];
-        
         $shop_food_input+=['shop_food_id'=>$shop_food_id];
-        
         $shop_food->fill($shop_food_input)->save();
-        //$shop_foodの変数を受け取ったキーごとに上書きする
         $shop_food_id = $shop_food->id;
 
         return redirect('/shops/' .  $shop_id);
@@ -66,7 +56,6 @@ class BlogController extends Controller
     
     public function show(Shop $shop , Shop_food $shop_food)
     {
-        
         $shop_foods=$shop->shop_foods;
         
         $sum = 0;
@@ -92,17 +81,12 @@ class BlogController extends Controller
         $shop_id = $shop->id;
         
         $shop_food_input = $request['shop_food'];
-        
         $shop_food_input+=['shop_id'=>$shop_id];
         $shop_food_input += ['user_id' => $request->user()->id]; 
-        
         $shop_food->fill($shop_food_input)->save();
         
         return redirect('/shops/' .  $shop_id);
-        
     }    
-    
-    
     
     public function edit(shop $shop , shop_food $shop_food)
     {
@@ -120,21 +104,17 @@ class BlogController extends Controller
         $shop->save();
         
         $shop_id = $shop->id;
-        
         $shop_food_id = $shop_food->id; 
         
         $shop_food_input = $request['shop_food'];
         $shop_food_input+=['shop_id'=>$shop_id];
-        
         $shop_food_input+=['shop_food_id'=>$shop_food_id];
-        
         $shop_food->fill($shop_food_input)->save();
         
         $shop_food_id = $shop_food->id;
         
         return redirect('/shops/' . $shop_id );
     }
-    
     
     public function delete(shop_food $shop_food)
     {

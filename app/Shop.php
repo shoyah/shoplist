@@ -10,12 +10,12 @@ class Shop extends Model
     protected $fillable = [
     'name',
     'user_id'
-];
+    ];
 
     public function getByLimit()
     {
         // updated_atで降順に並べる
-        return $this->with('user')->orderBy('updated_at', 'DESC')->get();
+        return $this->with('user')->orderBy('updated_at', 'asc')->get();
     }
         
     //Shop_foodsに対するリレーション

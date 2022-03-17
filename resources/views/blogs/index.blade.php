@@ -9,15 +9,7 @@
     <script type="text/javascript">
     <!--
 
-    // 設定開始
-    // （フレームの場合は、表示先のフレーム名を設定してください）
-    // （top を指定すると、フレームの分割を廃止して画面全体で表示します）
-    // （blank を指定すると、新規ウィンドウで表示します）
-    
     var target = "";
-    
-    // 設定終了
-    
     
     function jump(){
     
@@ -51,7 +43,7 @@
     }
     
     // -->
-</script>
+    </script>
     </head>
     
     
@@ -68,9 +60,9 @@
         
         <form action="#" name="form1">
             <select name="select" onChange="jump()">
-            <option value="">期限リストを見る</option>
-            <option value="/limits/shoumi">賞味期限順</option>
-            <option value="/limits/shouhi">消費期限順</option>
+                <option value="">期限リストを見る</option>
+                <option value="/limits/shoumi">賞味期限順</option>
+                <option value="/limits/shouhi">消費期限順</option>
             </select>
         </form>
         

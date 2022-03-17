@@ -16,7 +16,7 @@ class Shop_food extends Model
     'cost',
     'shoumi_date',
     'shouhi_date'
-];
+    ];
 
     function getByLimit()
     {

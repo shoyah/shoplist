@@ -11,7 +11,7 @@ class PostLineMessage extends Command
      *
      * @var string
      */
-    protected $signature = 'test';
+    protected $signature = 'PostLineMessage';
 
     /**
      * The console command description.
@@ -35,7 +35,7 @@ class PostLineMessage extends Command
      *
      * @return mixed
      */
-    public function handle()
+    public function handle(User $user , Shop  $shop , Shop_food $shop_food)
     {
         //php artisan test を実行するとここに行く
     }

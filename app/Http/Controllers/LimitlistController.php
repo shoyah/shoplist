@@ -24,10 +24,12 @@ class LimitlistController extends Controller
         date_default_timezone_set('Asia/Tokyo');
         $date = date('Y-m-d');
         
+        //現在ログインしているユーザーの現在日時までのshoumi_dateを取得し昇順にする。
         $shop = Shop_food::where('user_id' , $user_id)->where('shoumi_date' , '>=' , $date)->orderBy('shoumi_date' , 'asc')->get();
         
         return view('limitlists/shoumi')->with([ 'shops' => $shop]);
     }
+    
     public function shouhi( Shop $shop , User $user , Shop_food $shop_food)
     {
         $user = Auth::user();
